@@ -1,19 +1,23 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearTodo,clearCompTodo } from "../../redux/actions/todoAction";
+import { clearTodo, clearCompTodo } from "../../redux/actions/todoAction";
 import TodoItem from "./TodoItem";
 
 const TodoList = () => {
   const todoList = useSelector((state) => state.todo.todoList);
-  const dispatch= useDispatch()
+  const dispatch = useDispatch();
 
   const handleClearList = () => {
-    dispatch(clearTodo())
+    dispatch(clearTodo());
   };
   const handleClearComplited = () => {
-    dispatch(clearCompTodo())
+    dispatch(clearCompTodo());
   };
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  }, [todoList]);
 
-console.log(todoList)
+  console.log(todoList);
   return (
     <div>
       <div>

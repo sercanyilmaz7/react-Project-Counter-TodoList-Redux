@@ -14,12 +14,14 @@ const initialState = {
 const todoReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_TODO:
-      return {
-        todoList: [
-          ...state.todoList,
-          { id: new Date().getTime(), text: payload, completed: false },
-        ],
-      };
+        return {
+          todoList: payload
+            ? [
+                ...state.todoList,
+                { id: new Date().getTime(), text: payload, completed: false },
+              ]
+            : state.todoList,
+        };
     case TOGGLE_TODO:
       return {
         ...state,
@@ -43,7 +45,9 @@ const todoReducer = (state = initialState, { type, payload }) => {
       };
 
     default:
-      return state;
+      return {...state,
+        todoList: JSON.parse(localStorage.getItem("todoList") || []),
+      };
   }
 };
 export default todoReducer;
