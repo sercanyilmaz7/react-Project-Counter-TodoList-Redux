@@ -7,8 +7,8 @@ import {
 } from "../types/todoTypes";
 
 const initialState = {
-  //   todoList: [{ id: 1, text: "Work react redux", completed: false }],
-  todoList: [],
+    todoList: [{ id: 1, text: "Work react redux", completed: false }],
+  // todoList: [],
 };
 
 const todoReducer = (state = initialState, { type, payload }) => {
@@ -44,10 +44,12 @@ const todoReducer = (state = initialState, { type, payload }) => {
         todoList: state.todoList.filter((item) => item.completed === false),
       };
 
+    // default:
+    //   return {...state,
+    //     todoList: JSON.parse(localStorage.getItem("todoList") || []),
+    //   };
     default:
-      return {...state,
-        todoList: JSON.parse(localStorage.getItem("todoList") || []),
-      };
+      return state;
   }
 };
 export default todoReducer;

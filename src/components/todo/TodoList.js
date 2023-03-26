@@ -6,6 +6,7 @@ import TodoItem from "./TodoItem";
 const TodoList = () => {
   const todoList = useSelector((state) => state.todo.todoList);
   const dispatch = useDispatch();
+  console.log(todoList)
 
   const handleClearList = () => {
     dispatch(clearTodo());
